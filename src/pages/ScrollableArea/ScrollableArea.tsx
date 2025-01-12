@@ -6,8 +6,10 @@ import { Projects } from './Projects/Projects';
 
 export const ScrollableArea = ({
     handleScroll,
+    scrollPos,
 }: {
     handleScroll: (scrollTopPos: number) => void;
+    scrollPos: number;
 }) => {
     const scrollRef = useRef<Element | undefined>();
 
@@ -23,6 +25,12 @@ export const ScrollableArea = ({
                 scrollRef.current?.removeEventListener('scroll', eventFunction);
         }
     }, [scrollRef.current?.scrollTop]);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTo(0, scrollPos);
+        }
+    }, [scrollPos]);
 
     return (
         <Box

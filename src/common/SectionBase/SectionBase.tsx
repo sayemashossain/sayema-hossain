@@ -1,5 +1,8 @@
 import { styled, Box } from '@mui/material';
 import { theme } from '../theme';
+import { ReactNode } from 'react';
+
+export const SECTION_HEIGHT_VH = 95;
 
 const fullCircle = 360;
 const halfCircle = fullCircle / 2;
@@ -25,7 +28,7 @@ const getSectionStyle = (background: string, border: string) => {
 };
 
 export const StyledSection = styled(Box)({
-    height: '95vh',
+    height: `${SECTION_HEIGHT_VH}vh`,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -52,4 +55,14 @@ export const StyledSection = styled(Box)({
     '&:nth-of-type(odd)': getSectionStyle(theme.primary, theme.primaryLight),
 });
 
-export const AnimatedBorderBox = Box;
+export const SectionWithAnimatedBorderBox = ({
+    children,
+}: {
+    children: ReactNode;
+}) => {
+    return (
+        <StyledSection>
+            <Box>{children}</Box>
+        </StyledSection>
+    );
+};
